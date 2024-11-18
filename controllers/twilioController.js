@@ -68,3 +68,24 @@ exports.verifyAndDeleteOTP = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+// Function to delete OTP for a phone number
+exports.deleteOTPForPhone = async (req, res) => {
+  try {
+        console.log('Received request in deleteOTPForPhone');
+
+    const { phone, otp } = req.body;
+
+    // Delete the OTP record from the database
+    const isOTPDeleted = await deleteOTP(phone, otp);
+
+    if (!isOTPDeleted) {
+      return res.status(404).json({ error: 'OTP not found' });
+    }
+
+    res.status(200).json({ message: 'OTP deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting OTP:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
