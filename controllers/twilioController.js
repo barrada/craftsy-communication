@@ -72,12 +72,12 @@ exports.verifyAndDeleteOTP = async (req, res) => {
 // Function to delete OTP for a phone number
 exports.deleteOTPForPhone = async (req, res) => {
   try {
-        console.log('Received request in deleteOTPForPhone');
-
-    const { phone, otp } = req.body;
+    console.log('Received DELETE request to deleteOTPForPhone');
+    console.log('Request body:', req.body);
+    const { phone } = req.body;
 
     // Delete the OTP record from the database
-    const isOTPDeleted = await deleteOTP(phone, otp);
+    const isOTPDeleted = await deleteOTP(phone);
 
     if (!isOTPDeleted) {
       return res.status(404).json({ error: 'OTP not found' });

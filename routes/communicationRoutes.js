@@ -10,10 +10,6 @@ router.delete('/otp/sms/delete', deleteOTPForPhone);
 
 // test
 
-router.delete('/otp/sms/delete', (req, res, next) => {
-    console.log('Received DELETE request to /otp/sms/delete');
-    next();
-  }, deleteOTPForPhone);
 
 // exports
 module.exports = router;

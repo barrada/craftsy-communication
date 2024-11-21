@@ -30,10 +30,10 @@ const verifyOTP = (data) => {
   });
 };
 
-const deleteOTP = (phone, otp) => {
-  const query = 'DELETE FROM otp_codes WHERE phone = ? AND otp = ?';
+const deleteOTP = (phone) => {
+  const query = 'DELETE FROM otp_codes WHERE phone = ?';
   return new Promise((resolve, reject) => {
-    connection.query(query, [phone, otp], (err, result) => {
+    connection.query(query, [phone], (err, result) => {
       if (err) {
         reject(err);
         return;
